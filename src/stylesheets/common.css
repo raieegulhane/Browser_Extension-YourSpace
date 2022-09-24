@@ -1,0 +1,6 @@
+.comp-bg {
+    background-color: var(--comp-bg);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    border-radius: var(--br-sq);
+}
