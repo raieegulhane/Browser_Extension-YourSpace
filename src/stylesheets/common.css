@@ -4,3 +4,23 @@
     -webkit-backdrop-filter: blur(3px);
     border-radius: var(--br-sq);
 }
+
+.inp {
+    background-color: transparent;
+    color: white;
+    text-align: center;
+    width: 100%;
+    padding: 0.25rem 2rem;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 3px solid var(--white);
+    margin-top: 0.25rem;
+    outline: none;
+    caret-color: var(--white);
+}
+
+.inp:focus {
+    outline: none;
+    border-color: white;
+}

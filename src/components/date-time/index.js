@@ -19,7 +19,7 @@ export const DateTime = () => {
         <div className="td-wr fx-c fx-al-c">
             <div className="date">{date}</div>
             <div className="time">{time}</div>
-            <p className="greetings">Good {userGreeting}, {username}</p>
+            <p className="greetings">Good {userGreeting}, {username}.</p>
         </div>
     );
 }
