@@ -1,10 +1,21 @@
 import "./stylesheets/styles.css";
-import { Onboarding } from "./pages";
+import { useEffect, useState } from "react";
+import { Onboarding, Home } from "./pages";
 
 function App() {
+  const [onboardedUser, setOnboardedUser] = useState("");
+  useEffect(() => {
+    const user = localStorage.getItem("username");
+    setOnboardedUser(user);
+  }, [onboardedUser])
+
   return (
     <div className="App">
-      <Onboarding />
+      {
+        onboardedUser ? 
+        <Home /> :
+        <Onboarding />
+      }
     </div>
   );
 }

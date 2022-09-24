@@ -32,8 +32,8 @@ export const NamePrompt = ({ img }) => {
             <div className="np-cn fx-c fx-al-c">
                 <p className="np-prompt">Hello! What should we call you?</p>
                 <input 
-                    className="np-inp"
-                    type="txt"
+                    className="np-inp inp"
+                    type="text"
                     value={name}
                     onChange={(e) => inputChangeHandler(e)}
                 />

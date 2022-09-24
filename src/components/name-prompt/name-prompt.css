@@ -19,23 +19,7 @@
 }
 
 .np-inp {
-    background-color: transparent;
-    color: white;
     font-size: 2rem;
-    text-align: center;
-    width: 100%;
-    padding: 0.5rem 2rem;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    border-bottom: 3px solid var(--white);
-    outline: none;
-    caret-color: var(--white);
-}
-
-.np-inp:focus {
-    outline: none;
-    border-color: white;
 }
 
 .btn.np-btn {
