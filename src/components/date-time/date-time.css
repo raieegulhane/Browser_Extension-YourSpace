@@ -1,0 +1,14 @@
+.date {
+    font-size: 1rem;
+}
+
+.time {
+    font-size: 11rem;
+    line-height: 10rem;
+}
+
+.greetings {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-top: 1.5rem;
+}
