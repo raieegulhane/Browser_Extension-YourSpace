@@ -6,3 +6,4 @@ export { NamePrompt } from "./name-prompt";
 export { DateTime } from "./date-time";
 export { TodaysFocus } from "./todays-focus";
 export { Quotes } from "./quotes";
+export { Weather } from "./weather";

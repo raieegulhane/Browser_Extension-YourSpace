@@ -4,7 +4,6 @@ import { Onboarding, Home } from "./pages";
 
 function App() {
   const [onboardedUser, setOnboardedUser] = useState("");
-
   useEffect(() => {
     const user = localStorage.getItem("username");
     setOnboardedUser(user);

@@ -25,16 +25,15 @@ export const Quotes = () => {
     return(
         <div className="quote-wr fx-c fx-al-c">
             <p 
-                className="quote-txt"
                 onMouseOver={() => setShowAuthor(true)}
                 onMouseOut={() => setShowAuthor(false)}
             >
                 "{quote}"
             </p>
             { 
-                // showAuthor &&
+                showAuthor &&
                 author !== null &&
-                <i className="quote-author">~ {author}</i>
+                <i className="txt-sm">~ {author}</i>
             }
         </div>
     );
