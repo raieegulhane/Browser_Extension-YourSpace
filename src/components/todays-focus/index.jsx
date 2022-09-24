@@ -52,27 +52,23 @@ export const TodaysFocus = () => {
             </div> :
             <div className="fx-c fx-al-c">
                 <h3 className="tf-heading">TODAY'S FOCUS</h3>
-                { isCompleted && <p className="tf-cheer">{cheer}</p>}
                 <div className="tf-task-cn fx-r fx-js-sb fx-al-c">
                     {
                         isCompleted ? 
                         <button 
-                            className="btn-icon"
+                            className="focus-checked btn-icon"
                             onClick={() => dispatch({ type: "UPDATE_COMPLETED_STATE", payload: false })}
                         >
                             <span className="material-icons-outlined">check_box</span>
                         </button> :
                         <button 
-                            className="btn-icon"
+                            className="focus-unchecked btn-icon"
                             onClick={() => dispatch({ type: "UPDATE_COMPLETED_STATE", payload: true })}
                         >
                             <span className="material-icons-outlined">check_box_outline_blank</span>
                         </button>
-                        
                     }
-
                     <p className={`tf-task ${isCompleted && "tf-task-completed"}`}>{focus}</p>
-
                     <div className="tf-btn-cn fx-r fx-al-c">
                         <button 
                             className="btn-icon"
@@ -89,6 +85,7 @@ export const TodaysFocus = () => {
                         </button>
                     </div>
                 </div>
+                { isCompleted && <p className="tf-cheer">{cheer}</p>}
             </div>
         }
         </div>

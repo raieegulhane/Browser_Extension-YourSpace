@@ -3,7 +3,7 @@
 
 :root {
     /*** fonts ***/
-    --text-font: 'Roboto', sans-serif;
+    --font: 'Roboto', sans-serif;
 
     /*** colors ***/
     --white: #fff;

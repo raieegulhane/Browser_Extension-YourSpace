@@ -1,5 +1,6 @@
 .tf-wr {
-    margin-top: 3.5rem;
+    margin-top: 4rem;
+    height: 120px;
 }
 
 .tf-que-txt {
@@ -39,4 +40,3 @@
 .tf-btn-cn {
     gap: 1rem;
 }
-

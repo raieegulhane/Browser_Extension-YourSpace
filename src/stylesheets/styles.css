@@ -13,6 +13,7 @@
 
 .body {
     color: var(--white);
+    font: var(--font);
 }
 
 .App {

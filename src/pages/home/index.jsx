@@ -1,5 +1,5 @@
 import "./home.css";
-import { DateTime, TodaysFocus } from "../../components";
+import { DateTime, TodaysFocus, Quotes } from "../../components";
 import YourSpaceLogo from "../../assets/yourspace-logo2.svg"
 
 export const Home = () => {
@@ -12,6 +12,7 @@ export const Home = () => {
             />
             <DateTime />
             <TodaysFocus />
+            <Quotes />
         </main>
     );
 }
