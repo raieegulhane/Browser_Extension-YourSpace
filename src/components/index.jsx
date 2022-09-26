@@ -7,3 +7,5 @@ export { DateTime } from "./date-time";
 export { TodaysFocus } from "./todays-focus";
 export { Quotes } from "./quotes";
 export { Weather } from "./weather";
+export { GoogleSearch } from "./google-search";
+export { Timer } from "./timer";

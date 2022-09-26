@@ -1,0 +1,21 @@
+.gs-wr {
+    padding: 0.25rem 1rem;
+    border: 2px solid var(--white);
+    border-radius: var(--br-cr);
+}
+
+.gs-inp,
+.gs-btn {
+    background-color: transparent;
+    color: var(--white);
+    border: none;
+    outline: none;
+}
+.gs-inp {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.gs-inp::placeholder {
+    color: var(--grey1);
+}
