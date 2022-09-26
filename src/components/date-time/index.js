@@ -1,8 +1,10 @@
 import "./date-time.css";
 import { useState, useEffect } from "react";
+import { useFocus } from "../../context";
 import { getFormattedDate, getFormattedTime, greetings } from "../../utils";
 
 export const DateTime = () => {
+    const { focusDispatch } = useFocus();
     const [currTimestamp, setCurrTimestamp] = useState(new Date());
     const date = (getFormattedDate(currTimestamp));
     const time = (getFormattedTime(currTimestamp));

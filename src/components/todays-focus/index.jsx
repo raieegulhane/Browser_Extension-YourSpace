@@ -1,10 +1,11 @@
 import "./todays-focus.css";
-import { useState, useReducer, useEffect } from "react";
-import { initialFocusState, focusReducerFunction } from "../../reducers/focus-reducer";
+import { useState, useEffect } from "react";
+import { useFocus } from "../../context";
+import { getFormattedTime } from "../../utils";
 
 export const TodaysFocus = () => {
-    const [state, dispatch] = useReducer(focusReducerFunction, initialFocusState);
-    const { focus, isEditing, isCompleted} = state;
+    const { focusState, focusDispatch } = useFocus();
+    const { focus, isEditing, isCompleted} = focusState;
     const [inputValue, setInputValue] = useState("");
     const cheerList = [
 		"You did it!! 🎉",
@@ -17,24 +18,24 @@ export const TodaysFocus = () => {
 
     const submitFocusHandler = (event) => {
         if (event.key === "Enter" && inputValue) {
-            dispatch({ type: "SET_FOCUS", payload: inputValue });
+            focusDispatch({ type: "SET_FOCUS", payload: inputValue });
             setInputValue("");
-            dispatch({ type: "INIT_EDIT_FOCUS", payload: false })
+            focusDispatch({ type: "INIT_EDIT_FOCUS", payload: false })
         }
     }
 
     const editFocusHandler = () => {
         const prevFocus = localStorage.getItem("focus");
         setInputValue(prevFocus);
-        dispatch({ type: "INIT_EDIT_FOCUS", payload: true })
+        focusDispatch({ type: "INIT_EDIT_FOCUS", payload: true })
     }
 
     useEffect(() => {
         const currentFocus = localStorage.getItem("focus");
         const isComppletedState = localStorage.getItem("isCompleted");
-        dispatch({ type: "SET_FOCUS", payload: currentFocus ? currentFocus : ""});
-        dispatch({ type: "UPDATED_COMPLETED_STATUS", payload: isComppletedState ? isComppletedState : false })
-    }, [])
+        focusDispatch({ type: "SET_FOCUS", payload: currentFocus ? currentFocus : ""});
+        focusDispatch({ type: "UPDATED_COMPLETED_STATUS", payload: isComppletedState ? isComppletedState : false });
+    }, [focusDispatch])
 
     return(
         <div className="tf-wr">
@@ -57,13 +58,13 @@ export const TodaysFocus = () => {
                         isCompleted ? 
                         <button 
                             className="focus-checked btn-icon"
-                            onClick={() => dispatch({ type: "UPDATE_COMPLETED_STATE", payload: false })}
+                            onClick={() => focusDispatch({ type: "UPDATE_COMPLETED_STATE", payload: false })}
                         >
                             <span className="material-icons-outlined">check_box</span>
                         </button> :
                         <button 
                             className="focus-unchecked btn-icon"
-                            onClick={() => dispatch({ type: "UPDATE_COMPLETED_STATE", payload: true })}
+                            onClick={() => focusDispatch({ type: "UPDATE_COMPLETED_STATE", payload: true })}
                         >
                             <span className="material-icons-outlined">check_box_outline_blank</span>
                         </button>
@@ -78,7 +79,7 @@ export const TodaysFocus = () => {
                         </button>
                         <button 
                             className="btn-icon"
-                            onClick={() => dispatch({ type: "DELETE_FOCUS"})}
+                            onClick={() => focusDispatch({ type: "DELETE_FOCUS"})}
 
                         >
                             <span className="material-icons">delete</span>
