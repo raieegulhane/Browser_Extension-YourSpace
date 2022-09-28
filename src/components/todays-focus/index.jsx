@@ -1,11 +1,10 @@
 import "./todays-focus.css";
-import { useState, useEffect } from "react";
-import { useFocus } from "../../context";
-import { getFormattedTime } from "../../utils";
+import { useState, useLayoutEffect, useReducer } from "react";
+import { initialFocusState, focusReducerFunction } from "../../reducers";
 
 export const TodaysFocus = () => {
-    const { focusState, focusDispatch } = useFocus();
-    const { focus, isEditing, isCompleted} = focusState;
+    const [focusState, focusDispatch] = useReducer(focusReducerFunction, initialFocusState);
+    const { focus, isEditing, isCompleted } = focusState;
     const [inputValue, setInputValue] = useState("");
     const cheerList = [
 		"You did it!! 🎉",
@@ -30,12 +29,14 @@ export const TodaysFocus = () => {
         focusDispatch({ type: "INIT_EDIT_FOCUS", payload: true })
     }
 
-    useEffect(() => {
-        const currentFocus = localStorage.getItem("focus");
-        const isComppletedState = localStorage.getItem("isCompleted");
-        focusDispatch({ type: "SET_FOCUS", payload: currentFocus ? currentFocus : ""});
-        focusDispatch({ type: "UPDATED_COMPLETED_STATUS", payload: isComppletedState ? isComppletedState : false });
-    }, [focusDispatch])
+    useLayoutEffect(() => {
+        const savedFocus = localStorage.getItem("focus");
+        const savedIsCompleted = localStorage.getItem("isCompleted");
+        focusDispatch({ type: "SET_FOCUS", payload: savedFocus });
+        focusDispatch({ type: "UPDATE_COMPLETED_STATE", payload: savedIsCompleted })
+    }, []);
+
+    console.log(isCompleted)
 
     return(
         <div className="tf-wr">
@@ -80,7 +81,6 @@ export const TodaysFocus = () => {
                         <button 
                             className="btn-icon"
                             onClick={() => focusDispatch({ type: "DELETE_FOCUS"})}
-
                         >
                             <span className="material-icons">delete</span>
                         </button>
