@@ -34,9 +34,10 @@ export const TodaysFocus = () => {
         const savedIsCompleted = localStorage.getItem("isCompleted");
         focusDispatch({ type: "SET_FOCUS", payload: savedFocus });
         focusDispatch({ type: "UPDATE_COMPLETED_STATE", payload: savedIsCompleted })
+        console.log(savedIsCompleted)
     }, []);
 
-    console.log(isCompleted)
+  
 
     return(
         <div className="tf-wr">
@@ -56,21 +57,21 @@ export const TodaysFocus = () => {
                 <h3 className="tf-heading">TODAY'S FOCUS</h3>
                 <div className="tf-task-cn fx-r fx-js-sb fx-al-c">
                     {
-                        isCompleted ? 
+                        isCompleted === "true" ? 
                         <button 
                             className="focus-checked btn-icon"
-                            onClick={() => focusDispatch({ type: "UPDATE_COMPLETED_STATE", payload: false })}
+                            onClick={() => focusDispatch({ type: "UPDATE_COMPLETED_STATE", payload: "false" })}
                         >
                             <span className="material-icons-outlined">check_box</span>
                         </button> :
                         <button 
                             className="focus-unchecked btn-icon"
-                            onClick={() => focusDispatch({ type: "UPDATE_COMPLETED_STATE", payload: true })}
+                            onClick={() => focusDispatch({ type: "UPDATE_COMPLETED_STATE", payload: "true" })}
                         >
                             <span className="material-icons-outlined">check_box_outline_blank</span>
                         </button>
                     }
-                    <p className={`tf-task ${isCompleted && "tf-task-completed"}`}>{focus}</p>
+                    <p className={`tf-task ${isCompleted === "true" && "tf-task-completed"}`}>{focus}</p>
                     <div className="tf-btn-cn fx-r fx-al-c">
                         <button 
                             className="btn-icon"
@@ -86,7 +87,7 @@ export const TodaysFocus = () => {
                         </button>
                     </div>
                 </div>
-                { isCompleted && <p className="tf-cheer">{cheer}</p>}
+                { isCompleted === "true" && <p className="tf-cheer">{cheer}</p>}
             </div>
         }
         </div>
