@@ -1,3 +1,7 @@
+.ll-wr {
+    padding: 0.5rem 0;
+}
+
 .ll-list {
     max-height: 150px;
     overflow-y: auto;
@@ -17,7 +21,7 @@
     border-radius: 1px;
 }
 
-.ll-item {
+.ll-link-cn {
     gap: 0.5rem;
 }
 
@@ -28,4 +32,13 @@
 .ll-link:hover {
     transform: scaleX(1.05);
     transition: transform 0.5s ease;
+}
+
+.ll-btn-del {
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+.ll-item:hover > .ll-btn-del {
+    opacity: 1;
 }

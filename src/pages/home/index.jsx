@@ -1,5 +1,5 @@
 import "./home.css";
-import { DateTime, TodaysFocus, Quotes, Weather, GoogleSearch } from "../../components";
+import { DateTime, TodaysFocus, Quotes, Weather, GoogleSearch, Links } from "../../components";
 import YourSpaceLogo from "../../assets/yourspace-logo2.svg"
 
 export const Home = () => {
@@ -11,9 +11,12 @@ export const Home = () => {
                     src={YourSpaceLogo} 
                     alt="yourspace-logo" 
                 />
-                <GoogleSearch />
+                <div className="fx-r gap-1">
+                    <GoogleSearch />
+                    <Links />
+                </div>
             </div>
-            <Weather />
+            {/* <Weather /> */}
             <DateTime />
             <TodaysFocus />
             <Quotes />

@@ -1,7 +1,7 @@
 .comp-bg {
     background-color: var(--comp-bg);
-    backdrop-filter: blur(7px);
-    -webkit-backdrop-filter: blur(7px);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     padding: 1rem;
     border-radius: var(--br-sq);
     transition: opacity 0.75s ease;
@@ -40,6 +40,10 @@
     border-bottom: 1px solid var(--white);
 }
 
+.dd-inp::placeholder {
+    color: var(--grey1);
+}
+
 .inp:focus,
 .dd-inp:focus {
     outline: none;
@@ -48,4 +52,8 @@
 
 .dd-inp-empty {
     border: 1px solid var(--white);
+}
+
+.txt-red {
+    color: var(--red);
 }

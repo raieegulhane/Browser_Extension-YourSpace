@@ -38,12 +38,13 @@
     align-items: center;
     cursor: pointer;
     width: fit-content;
+    height: fit-content;
 }
 
 .btn-icon:hover {
     background-color: transparent;
     color: var(--white);
-    transform: scale(1.1);
+    transform: scale(1.05);
     
 }
 

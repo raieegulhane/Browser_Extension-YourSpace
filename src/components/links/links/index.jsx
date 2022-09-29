@@ -1,13 +1,16 @@
-import { useEffect, useState, useReducer } from "react";
-import { useList } from "../../../context";
-import { initialListValues, listReducerFunction } from "../../../reducers";
-import { LinksList, AddLink } from "..";
 import "./links.css";
+import { useState, useLayoutEffect } from "react";
+import { useList } from "../../../context";
+import { LinksList, AddLink } from "..";
 
 export const Links = () => {
     const [showDropdown, setShowDropdown] = useState();
-    const {listState: { linksList }, setListState} = useList();
+    const {listState: { linksList } } = useList();
     const [showAddLink, setShowAddLink] = useState(linksList.length > 0 ? false : true);
+
+    useLayoutEffect(() => {
+        localStorage.setItem("links-list", JSON.stringify(linksList));
+    },[linksList]);
 
     return(
         <div className="l-wr">
@@ -21,12 +24,8 @@ export const Links = () => {
             <div className={`l-cn comp-bg ${showDropdown ? "on" : "off"}`}>
             {
                 showAddLink ? 
-                <AddLink 
-                    onClickBackBtn={() => setShowAddLink(false)}
-                /> :
-                <LinksList 
-                    onClick={() => setShowAddLink(true)}
-                />
+                <AddLink setShowAddLink={setShowAddLink} /> :
+                <LinksList setShowAddLink={setShowAddLink} />
             }
             </div>
         </div>

@@ -23,22 +23,10 @@ const listReducerFunction = (state, { type, payload }) => {
                 linksList: [ ...linksList, { _id: uuid(), linkName: payload.linkName, link: payload.link } ]
             });
 
-        case "EDIT_LINK":
-            return({
-                ...state,
-                linksList: [ ...linksList ].map((item) => {
-                    return(
-                        item._id === payload._id ?
-                        { ...item, linkTitle: payload.linkName, link:payload.link } :
-                        { item }
-                    );
-                })
-            });
-        
         case "DELETE_LINK":
             return({
                 ...state,
-                linksList: [ ...linksList ].filter(({ _id }) => _id !== payload._id)
+                linksList: [ ...linksList ].filter(({ _id }) => _id !== payload)
             });
 
         // todo list
