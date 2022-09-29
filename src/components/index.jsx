@@ -9,3 +9,4 @@ export { Quotes } from "./quotes";
 export { Weather } from "./weather";
 export { GoogleSearch } from "./google-search";
 export { Timer } from "./timer";
+export { Links } from "./links";

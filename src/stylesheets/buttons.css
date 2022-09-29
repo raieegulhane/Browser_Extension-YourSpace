@@ -46,12 +46,38 @@
     transform: scale(1.1);
     
 }
+
 /* .btn-link {
-    color: var(--btn);
+    color: var(--white);
     text-decoration: none;
 }
 
 .btn-link:hover {
-    color: var(--btn-hov);
+    color: var(--white);
     text-decoration: none;
+    transform: scale(1.07);
+    transition: transform 1s ease;
 } */
+
+.comp-btn {
+    background-color: transparent;
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 0.75rem;
+    width: fit-content;
+    height: fit-content;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.comp-btn-i {
+    font-size: 1.75rem;
+}
+
+.comp-btn:hover > .comp-btn-i {
+    transform: scale(1.07);
+    transition: transform 1s ease;
+}

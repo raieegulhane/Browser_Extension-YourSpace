@@ -1,0 +1,25 @@
+.al-wr {
+    gap: 0.5rem;
+}
+
+.al-inp-wr {
+    padding: 1rem 0.25rem;
+    gap: 1rem;
+}
+
+.btn-icon.link-back-btn {
+    height: fit-content;
+}
+
+.back-icon {
+    font-size: 1rem;
+}
+
+.btn.al-btn {
+    width: fit-content;
+    padding: 0.25rem 1rem;
+}
+
+.al-btn-i {
+    font-size: 1rem;
+}

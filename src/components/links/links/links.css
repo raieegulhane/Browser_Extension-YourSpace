@@ -1,0 +1,26 @@
+.l-wr {
+    position: relative;
+}
+
+.l-btn {
+    cursor: pointer;
+}
+
+.l-cn {
+    position: absolute;
+    top: 3rem;
+    left: -0.5rem;
+    min-width: 220px;
+}
+
+/* .comp {
+    display: none;
+}
+
+.al-wr:hover > .comp {
+    display: block;
+}
+
+.comp-on > .comp-off {
+    transition: opacity 2s ease;
+} */
