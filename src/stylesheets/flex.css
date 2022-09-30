@@ -32,6 +32,10 @@
     align-items: center;
 }
 
+.fx-al-fe {
+    align-items: flex-end;
+}
+
 .gap-1 {
     gap: 1rem
 }

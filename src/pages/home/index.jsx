@@ -23,7 +23,7 @@ export const Home = () => {
             </header>
             <DateTime />
             <TodaysFocus />
-            <footer className="home-footer fx-r fx-js-sb">
+            <footer className="home-footer fx-r fx-js-sb fx-al-c">
                 <Todo />
                 <Quotes />
                 <Todo />

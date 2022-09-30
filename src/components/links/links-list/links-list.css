@@ -6,19 +6,20 @@
     max-height: 150px;
     overflow-y: auto;
     gap: 0.5rem;
+    padding: 0.5rem;
 }
 
 .ll-list::-webkit-scrollbar {
-    width: 1px;
+    width: 3px;
 }
 .ll-list::-webkit-scrollbar-thumb {
-    background-color: transparent;
-    border-radius: 1px;
+    background-color: var(--rem-bg);
+    border-radius: 3px;
 }
 
 .ll-list::-webkit-scrollbar-track {
     background: transparent;
-    border-radius: 1px;
+    border-radius: 3px;
 }
 
 .ll-link-cn {

@@ -4,11 +4,11 @@ export const TodoList = () => {
     const { listState: { todoList }, listDispatch } = useList();
 
     return(
-        <ul className="todo-list-wr fx-c list-noBullets gap-2">
+        <ul className="ll-list todo-list-wr fx-c list-noBullets gap-2">
         {
             todoList.map(({ _id, todo, isCompleted }) => {
                 return(
-                    <li className="fx-r fx-al-c fx-js-sb">
+                    <li className="ll-item fx-r fx-al-c fx-js-sb">
                         <label 
                             className="fx-r fx-al-c gap-2"                    
                             htmlFor={todo}
@@ -25,7 +25,7 @@ export const TodoList = () => {
                             {todo}
                         </label>
                         <button 
-                            className="btn-icon"
+                            className="ll-btn-del btn-icon"
                             onClick={() => listDispatch({ type: "DELETE_TODO", payload: _id })}
                         >
                             <span className="txt-sm material-icons-outlined">
