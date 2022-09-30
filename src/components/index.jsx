@@ -9,4 +9,4 @@ export { Quotes } from "./quotes";
 export { Weather } from "./weather";
 export { GoogleSearch } from "./google-search";
 export { Links } from "./links";
-export { Events, CountdownList } from "./events";
+export { Todo } from "./todo";

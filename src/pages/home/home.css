@@ -5,14 +5,21 @@
     padding: 2rem;
 }
 
-.nav {
-    position: absolute;
+.home-header {
+    position: fixed;
     top: 1rem;
     left: 1.5rem;
-    right: 1.5rem;
+    right: 2rem;
 }
 
 .home-logo {
     max-width: 2.5rem;
     margin-right: 2.5rem;
+}
+
+.home-footer {
+    position: fixed;
+    bottom: 1rem;
+    left: 2rem;
+    right: 2rem;
 }

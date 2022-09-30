@@ -1,0 +1,11 @@
+.todo-dd {
+    position: absolute;
+    bottom: 3rem;
+    right: 0;
+    min-width: 225px;
+    padding: 1.25rem;
+}
+
+.todo-list-wr {
+    margin-bottom: 0.5rem;
+}

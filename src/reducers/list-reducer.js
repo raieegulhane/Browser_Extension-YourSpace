@@ -23,7 +23,14 @@ const listReducerFunction = (state, { type, payload }) => {
         case "ADD_LINK":
             return({
                 ...state,
-                linksList: [ ...linksList, { _id: uuid(), linkName: payload.linkName, link: payload.link } ]
+                linksList: [ 
+                    ...linksList, 
+                    { 
+                        _id: uuid(), 
+                        linkName: payload.linkName, 
+                        link: payload.link 
+                    } 
+                ]
             });
 
         case "DELETE_LINK":
@@ -36,7 +43,14 @@ const listReducerFunction = (state, { type, payload }) => {
         case "ADD_EVENT":
             return({
                 ...state,
-                eventsList: [ ...eventsList, { _id: uuid(), event: payload.event, timestamp: payload.timestamp } ]
+                eventsList: [ 
+                    ...eventsList, 
+                    { 
+                        _id: uuid(), 
+                        event: payload.event, 
+                        timestamp: payload.timestamp 
+                    } 
+                ]
             });
 
         case "DELETE_EVENT":
@@ -46,26 +60,28 @@ const listReducerFunction = (state, { type, payload }) => {
             });
 
         // todo list
-        case "SET_TODO_LIST":
-            return({
-                ...state,
-                eventsList: [ ...payload ]
-            });
 
         case "ADD_TODO":
             return({
                 ...state,
-                todoList: [ ...todoList, { _id: uuid(), todo: payload } ]
+                todoList: [ 
+                    ...todoList, 
+                    { 
+                        _id: uuid(), 
+                        todo: payload, 
+                        isCompleted: false 
+                    } 
+                ]
             });
         
-        case "EDIT_TODO":
+        case "TODO_COMPLETED_TOGGLE":
             return({
                 ...state,
                 todoList: [ ...todoList ].map((item) => {
                     return(
-                        item._id === payload._id ?
-                        { ...item, todo: payload } :
-                        { item }
+                        item._id === payload ?
+                        { ...item, isCompleted: !item.isCompleted } :
+                        { ...item } 
                     );
                 })
             });
@@ -73,7 +89,7 @@ const listReducerFunction = (state, { type, payload }) => {
         case "DELETE_TODO":
             return({
                 ...state,
-                todoList: [ ...todoList ].filter(({ _id }) => _id !== payload._id )
+                todoList: [ ...todoList ].filter(({ _id }) => _id !== payload )
             });
 
         default:

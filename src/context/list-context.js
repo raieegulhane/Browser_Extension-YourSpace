@@ -1,4 +1,4 @@
-import { createContext, useContext, useReducer, useLayoutEffect } from "react";
+import { createContext, useContext, useReducer, useEffect } from "react";
 import { initialListValues, listReducerFunction } from "../reducers";
 
 const ListContext = createContext(initialListValues);
@@ -6,12 +6,10 @@ const ListContext = createContext(initialListValues);
 const ListProvider = ({ children }) => {
     const [listState, listDispatch] = useReducer(listReducerFunction, initialListValues);
     
-
-    useLayoutEffect(() => {
+    useEffect(() => {
         const linksList = JSON.parse(localStorage.getItem("links-list")) || [];
         const eventsList = JSON.parse(localStorage.getItem("events-list")) || [];
         const todoList = JSON.parse(localStorage.getItem("todo-list")) || [];   
-        console.log(eventsList);
         listDispatch({
             type: "SET_LISTS",
             payload: {
