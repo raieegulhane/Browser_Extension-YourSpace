@@ -1,30 +1,31 @@
-import "./add-link.css"
+import "./add-events.css";
 import { useState } from "react";
 import { useList } from "../../../context";
+import { inpTimestampFormat } from "../../../utils";
 
-export const AddLink = ({ setShowAddLink }) => {
-    const [newLink, setNewLink] = useState({ linkNameNew: "", linkNew: "" });
-    const { linkNameNew, linkNew } = newLink;
+export const AddEvents = ({ setShowAddEvents }) => {
+    const [newEvent, setNewEvent] = useState({ eventName: "", eventTimestamp: ""});
+    const { eventName, eventTimestamp } = newEvent;
     const [warning, setWarning] = useState(false);
-    const { listState: { linksList },  listDispatch } = useList(); 
+    const { listState: { eventsList },  listDispatch } = useList(); 
 
-    const addLinkHandler = (e) => {
+    const addEventHandler = (e) => {
         e.preventDefault();
-        if (!linkNameNew || !linkNew ) {
+        if (!eventName || !eventTimestamp ) {
             return setWarning(true);
         }
-        listDispatch({ type: "ADD_LINK", payload: { linkName: linkNameNew, link: linkNew }})
-        setShowAddLink(false);
+        listDispatch({ type: "ADD_EVENT", payload: { event: eventName, timestamp: eventTimestamp }})
+        setShowAddEvents(false);
     }
 
     return(
-        <div className="al-wr fx-c">
+        <div className="events-wr fx-c">
             <div className="fx-r fx-al-c fx-js-sb">
             {
-                linksList.length > 0 &&
+                eventsList.length > 0 &&
                 <button 
                     className="link-back-btn btn-icon"
-                    onClick={() => setShowAddLink(false)}
+                    onClick={() => setShowAddEvents(false)}
                 >
                     <span className="back-icon material-icons-outlined">arrow_back</span>
                 </button>
@@ -41,42 +42,40 @@ export const AddLink = ({ setShowAddLink }) => {
             <form className="al-inp-wr fx-c">
                 <label 
                     className="al-label"
-                    htmlFor="link-name"
+                    htmlFor="event-name"
                 >
                     Name
                     <input 
-                        id="link-name"
+                        id="event-name"
                         className="dd-inp"
-                        name="link-name"
+                        name="event-name"
                         type="text"
                         autoComplete="false"
                         required
-                        value={linkNameNew}
-                        onChange={(e) => setNewLink({ ...newLink, linkNameNew: e.target.value })}
+                        value={eventName}
+                        onChange={(e) => setNewEvent({ ...newEvent, eventName: e.target.value })}
                     />
                 </label>
                 <label 
                     className="al-label"
-                    htmlFor="link"
+                    htmlFor="event"
                 >
-                    Link
+                    Date and Time
                     <input 
-                        id="link"
-                        className="dd-inp"
-                        name="link"
-                        type="text"
-                        placeholder="https://example.com"
-                        autoComplete="false"
+                        id="event"
+                        className="dd-inp event-inp"
+                        name="event"
+                        type="datetime-local"
+                        min={inpTimestampFormat(new Date())}
                         required
-                        value={linkNew}
-                        onChange={(e) => setNewLink({ ...newLink, linkNew: e.target.value })}
+                        value={eventTimestamp}
+                        onChange={(e) => setNewEvent({ ...newEvent, eventTimestamp: e.target.value })}
                     />
-                    <span className="txt-sm txt-gray">Link must start with https://</span>
                 </label>
                 <button 
                     className="btn btn-outline btn-wt-i btn-cr al-btn"
                     type="submit"
-                    onClick={addLinkHandler}
+                    onClick={addEventHandler}
                 >
                     <span className="txt-sm">Add</span>
                     <span className="al-btn-i material-icons-outlined">add</span>

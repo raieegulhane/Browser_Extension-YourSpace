@@ -10,13 +10,16 @@ const listReducerFunction = (state, { type, payload }) => {
     const { linksList, eventsList, todoList } = state;
 
     switch (type) {
-        // links list
-        case "SET_LINKS_LIST":
+        // all lists
+        case "SET_LISTS":
             return({
                 ...state,
-                linksList: [ ...payload ]
+                linksList: [ ...payload.linksList ],
+                eventsList: [ ...payload.eventsList ],
+                todoList: [ ...payload.todoList ]
             });
 
+        // links list
         case "ADD_LINK":
             return({
                 ...state,
@@ -29,11 +32,24 @@ const listReducerFunction = (state, { type, payload }) => {
                 linksList: [ ...linksList ].filter(({ _id }) => _id !== payload)
             });
 
+        // events list
+        case "ADD_EVENT":
+            return({
+                ...state,
+                eventsList: [ ...eventsList, { _id: uuid(), event: payload.event, timestamp: payload.timestamp } ]
+            });
+
+        case "DELETE_EVENT":
+            return({
+                ...state,
+                eventsList: [ ...eventsList ].filter(({ _id }) => _id !== payload)
+            });
+
         // todo list
         case "SET_TODO_LIST":
             return({
                 ...state,
-                todoList: [ ...payload ]
+                eventsList: [ ...payload ]
             });
 
         case "ADD_TODO":

@@ -8,5 +8,5 @@ export { TodaysFocus } from "./todays-focus";
 export { Quotes } from "./quotes";
 export { Weather } from "./weather";
 export { GoogleSearch } from "./google-search";
-export { Timer } from "./timer";
 export { Links } from "./links";
+export { Events, CountdownList } from "./events";
