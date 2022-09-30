@@ -1,5 +1,5 @@
 import "./home.css";
-import { DateTime, TodaysFocus, Quotes, Weather, GoogleSearch, Links, Todo } from "../../components";
+import { DateTime, TodaysFocus, Quotes, Weather, GoogleSearch, Links, Todo, Settings } from "../../components";
 import YourSpaceLogo from "../../assets/yourspace-logo2.svg"
 
 export const Home = () => {
@@ -24,7 +24,7 @@ export const Home = () => {
             <DateTime />
             <TodaysFocus />
             <footer className="home-footer fx-r fx-js-sb fx-al-c">
-                <Todo />
+                <Settings />
                 <Quotes />
                 <Todo />
             </footer>

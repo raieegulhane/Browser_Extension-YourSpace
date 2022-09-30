@@ -9,14 +9,6 @@
     border-color: var(--white);
 }
 
-/* .btn-primary {
-    background-color: var(--btn);
-}
-
-.btn-primary:hover {
-    background-color: var(--btn-hov);
-} */
-
 .btn-outline {
     color: var(--white);
 }
@@ -48,17 +40,16 @@
     
 }
 
-/* .btn-link {
+.btn-link {
     color: var(--white);
-    text-decoration: none;
 }
 
 .btn-link:hover {
     color: var(--white);
     text-decoration: none;
-    transform: scale(1.07);
+    transform: scaleX(1.05);
     transition: transform 1s ease;
-} */
+}
 
 .comp-btn {
     background-color: transparent;

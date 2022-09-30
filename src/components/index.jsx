@@ -10,3 +10,4 @@ export { Weather } from "./weather";
 export { GoogleSearch } from "./google-search";
 export { Links } from "./links";
 export { Todo } from "./todo";
+export { Settings } from "./setting";

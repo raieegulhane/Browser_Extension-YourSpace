@@ -1,0 +1,81 @@
+.settings-dd {
+    position: absolute;
+    bottom: 3rem;
+    left: 0.5rem; 
+    min-width: 250px;
+}
+
+.op-focus-mode {
+    padding: 0.5rem 0.75rem 1rem;
+    border-bottom: 1px solid var(--grey2);
+}
+
+.toggle {
+    position: relative;
+    display: inline-block;
+    width: 30px;
+    height: 16px;
+}
+  
+.toggle input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--grey2);
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 10px;
+    width: 10px;
+    left: 3px;
+    bottom: 3px;
+    background-color: var(--white);
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: var(--toggle);  
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px var(--grey2);
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(15px);
+    -ms-transform: translateX(15px);
+    transform: translateX(15px);
+}
+
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+} 
+
+.op-clock-format {
+    padding: 1rem 0.75rem;
+    border-bottom: 1px solid var(--grey2);
+}
+
+.settings-clr-btn {
+    padding: 1rem 0.75rem 0.5rem;
+    font-weight: bold;
+    margin-right: auto;
+}

@@ -8,7 +8,9 @@
     /*** colors ***/
     --white: #fff;
     --grey1: #bbb;
+    --grey2: #777;
     --red: #ff0000;
+    --toggle: #0060df;
     --comp-bg: #33333350;
     --rem-bg: #22222299;
 }
