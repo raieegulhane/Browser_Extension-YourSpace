@@ -11,4 +11,11 @@
     font-size: 2.5rem;
     font-weight: bold;
     margin-top: 0.5rem;
+    transition: opacity 1s ease;
+}
+
+.focus-mode-on {
+    position: absolute;
+    top: 2rem;
+    font-size: 1.25rem;
 }

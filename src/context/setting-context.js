@@ -7,9 +7,9 @@ const SettingProvider = ({ children }) => {
     const [settingState, settingDispatch] = useReducer(settingReducerFunction, initialSettingValues);
 
     useEffect(() => {
-        const focusMode = JSON.parse(localStorage.getItem("focus-mode"));
+        const focusMode = JSON.parse(localStorage.getItem("focus-mode")) || false;
         settingDispatch({ type: "SET_FOCUS_MODE", playload: focusMode });
-        const clockFormat12 = JSON.parse(localStorage.getItem("clock-format-12"));
+        const clockFormat12 = JSON.parse(localStorage.getItem("clock-format-12")) || false;
         settingDispatch({ type: "SET_CLOCK_FORMAT", playload: clockFormat12 });
     }, []);
 

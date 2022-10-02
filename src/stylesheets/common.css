@@ -57,3 +57,13 @@
 .txt-red {
     color: var(--red);
 }
+
+.focus-on { 
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+.focus-off { 
+    opacity: 1;
+    transition: opacity 1s ease;
+}

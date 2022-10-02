@@ -26,8 +26,7 @@ export const Home = () => {
                         alt="yourspace-logo" 
                     />
                     {
-                        !focusMode && 
-                        <div className="fx-r gap-1">
+                        <div className={`fx-r gap-1 ${focusMode ? "focus-on" : "focus-off"}`}>
                             <GoogleSearch />
                             <Links />
                         </div>
@@ -41,8 +40,12 @@ export const Home = () => {
             <TodaysFocus />
             <footer className="home-footer fx-r fx-js-sb fx-al-c">
                 <Settings />
-                <Quotes />
-                <Todo />
+                <div className={`fx-r gap-1 ${focusMode ? "focus-on" : "focus-off"}`}>
+                    <Quotes />
+                </div>
+                <div className={`fx-r gap-1 ${focusMode ? "focus-on" : "focus-off"}`}>
+                    <Todo />
+                </div>
             </footer>
         </div>
     );
