@@ -8,7 +8,7 @@ export const Onboarding = () => {
 
     const goToStep2Handler = () => {
         localStorage.setItem("init-step-2", true);
-        window.location.reload(false);
+        window.location.reload(true);
     }
 
     useEffect(() => {

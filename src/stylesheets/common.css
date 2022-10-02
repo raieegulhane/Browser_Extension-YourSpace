@@ -1,7 +1,7 @@
 .comp-bg {
     background-color: var(--comp-bg);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(23px);
+    -webkit-backdrop-filter: blur(23px);
     padding: 1rem;
     border-radius: var(--br-sq);
     transition: opacity 0.75s ease;

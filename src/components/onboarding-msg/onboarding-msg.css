@@ -1,5 +1,7 @@
 .ob-msg-wr {
-    background-color: var(--comp-bg);
+    background-color: var(--ob-msg-bg);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
     padding: 2rem;
     max-width: 450px;
     border-radius: var(--br-sq);

@@ -2,7 +2,7 @@ import "./onboarding-msg.css";
 
 export const OnboardingMsg = ({ img, onClick }) => {
     return(
-        <div className="ob-msg-wr fx-c fx-al-c comp-bg">
+        <div className="ob-msg-wr fx-c fx-al-c">
             <img 
                 className="ob-msg-logo"
                 src={img}

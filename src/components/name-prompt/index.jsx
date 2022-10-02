@@ -16,7 +16,7 @@ export const NamePrompt = ({ img }) => {
     const updateNameHandler = () => {
         if(name) {
             localStorage.setItem("username", name);
-            window.location.reload(false);
+            window.location.reload(true);
         } else {
             setWarning(true);
         }

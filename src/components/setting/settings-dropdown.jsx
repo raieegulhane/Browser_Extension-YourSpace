@@ -1,8 +1,8 @@
 import { useLayoutEffect, useState } from "react";
+import { useSetting } from "../../context";
 
 export const SettingsDropdown = () => {
-    const [focusMode, setFocusMode] = useState(false); 
-    const [clockFormat12, setClockFormat12] = useState(false);
+    const { settingState: { focusMode, clockFormat12 }, settingDispatch } = useSetting();
 
     const clearAllDataHandler = (e) => {
         e.preventDefault()
@@ -37,9 +37,9 @@ export const SettingsDropdown = () => {
                         type="checkbox"
                         value="focus-mode"
                         checked={focusMode}
-                        onChange={() => setFocusMode(!focusMode)}
+                        onChange={() => settingDispatch({ type: "TOGGLE_FOCUS_MODE" })}
                     />
-                    <span class="slider round"></span>
+                    <span className="slider round"></span>
                 </label>
             </div>
             <div className="op-clock-format fx-c gap-2">
@@ -55,7 +55,7 @@ export const SettingsDropdown = () => {
                             name="clock-format"
                             value="clock-format-12"
                             checked={clockFormat12}
-                            onChange={() => setClockFormat12(!clockFormat12)}
+                            onChange={() => settingDispatch({ type: "TOGGLE_CLOCK_FORMAT" })}
                         /> 
                         <span>12 hour</span>
                     </label>
@@ -69,7 +69,7 @@ export const SettingsDropdown = () => {
                             name="clock-format"
                             value="clock-format-12"
                             checked={!clockFormat12}
-                            onChange={() => setClockFormat12(!clockFormat12)}
+                            onChange={() => settingDispatch({ type: "TOGGLE_CLOCK_FORMAT" })}
                         /> 
                         <span>24 hour</span>
                     </label>
