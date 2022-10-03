@@ -1,31 +1,41 @@
-import "./add-events.css";
-import { useState } from "react";
-import { useList } from "../../../context";
-import { inpTimestampFormat } from "../../../utils";
+import { useLayoutEffect, useState } from "react";
+import { useList } from "../../context";
 
-export const AddEvents = ({ setShowAddEvents }) => {
-    const [newEvent, setNewEvent] = useState({ eventName: "", eventTimestamp: ""});
-    const { eventName, eventTimestamp } = newEvent;
+export const AddEvents = ({ setShowEventList }) => {
     const [warning, setWarning] = useState(false);
-    const { listState: { eventsList },  listDispatch } = useList(); 
+    const [newEvent, setNewEvent] = useState({ eventName: "", eventTimestamp: "" });
+    const { eventName, eventTimestamp } = newEvent;
+    const { listState: { eventsList }, listDispatch} = useList();
 
     const addEventHandler = (e) => {
         e.preventDefault();
-        if (!eventName || !eventTimestamp ) {
-            return setWarning(true);
+
+        if (!eventName || !eventTimestamp) {
+            setWarning(true);
+        } else {
+            listDispatch({
+                type: "ADD_EVENT", 
+                payload: {
+                    name: eventName, 
+                    timestamp: eventTimestamp 
+                }
+            });
+            setShowEventList(true);
         }
-        listDispatch({ type: "ADD_EVENT", payload: { event: eventName, timestamp: eventTimestamp }})
-        setShowAddEvents(false);
     }
 
+    useLayoutEffect(() => {
+        localStorage.setItem("events-list", JSON.stringify(eventsList));
+    }, [eventsList]);
+
     return(
-        <div className="events-wr fx-c">
+        <div className="ae-wr fx-c gap-1">
             <div className="fx-r fx-al-c fx-js-sb">
             {
                 eventsList.length > 0 &&
                 <button 
                     className="link-back-btn btn-icon"
-                    onClick={() => setShowAddEvents(false)}
+                    onClick={() => setShowEventList(true)}
                 >
                     <span className="back-icon material-icons-outlined">arrow_back</span>
                 </button>
@@ -38,35 +48,32 @@ export const AddEvents = ({ setShowAddEvents }) => {
                 </p>
             }
             </div>
-            
-            <form className="al-inp-wr fx-c">
+            <form className="fx-c gap-3">
                 <label 
-                    className="al-label"
+                    className="fx-c"
                     htmlFor="event-name"
                 >
-                    Name
+                    Event:
                     <input 
                         id="event-name"
                         className="dd-inp"
                         name="event-name"
                         type="text"
-                        autoComplete="false"
                         required
                         value={eventName}
                         onChange={(e) => setNewEvent({ ...newEvent, eventName: e.target.value })}
                     />
                 </label>
                 <label 
-                    className="al-label"
-                    htmlFor="event"
+                    className="fx-c"
+                    htmlFor="event-date"
                 >
-                    Date and Time
+                    Date and Time:
                     <input 
-                        id="event"
-                        className="dd-inp event-inp"
-                        name="event"
+                        id="event-date"
+                        className="dd-inp ae-inp"
+                        name="event-date"
                         type="datetime-local"
-                        min={inpTimestampFormat(new Date())}
                         required
                         value={eventTimestamp}
                         onChange={(e) => setNewEvent({ ...newEvent, eventTimestamp: e.target.value })}

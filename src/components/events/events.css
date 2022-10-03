@@ -1,0 +1,25 @@
+.events-dd {
+    position: absolute;
+    top: 3rem;
+    right: 0rem; 
+    min-width: 250px;
+    padding: 1rem 1.5rem;
+}
+
+.ae-inp {
+    color-scheme: dark;
+}
+
+.el-item {
+    margin-bottom: 1rem;
+}
+
+.cl-item {
+    gap: 3px;
+}
+
+.cl-counter {
+    font-size: 1.25rem;
+    font-weight: bold;
+    line-height: 1.45rem;
+}

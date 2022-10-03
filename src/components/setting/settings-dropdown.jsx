@@ -19,8 +19,8 @@ export const SettingsDropdown = () => {
     }
 
     useLayoutEffect(() => {
-        localStorage.setItem("focus-mode", focusMode);
-        localStorage.setItem("clock-format-12", clockFormat12);
+        localStorage.setItem("focus-mode", focusMode ? focusMode : false);
+        localStorage.setItem("clock-format-12", clockFormat12 ? clockFormat12 : false);
     }, [focusMode, clockFormat12]);
 
     return(

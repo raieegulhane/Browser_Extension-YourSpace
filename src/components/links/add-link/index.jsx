@@ -18,7 +18,7 @@ export const AddLink = ({ setShowAddLink }) => {
     }
 
     return(
-        <div className="al-wr fx-c">
+        <div className="al-wr fx-c gap-1">
             <div className="fx-r fx-al-c fx-js-sb">
             {
                 linksList.length > 0 &&

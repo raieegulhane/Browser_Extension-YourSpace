@@ -47,8 +47,9 @@ const listReducerFunction = (state, { type, payload }) => {
                     ...eventsList, 
                     { 
                         _id: uuid(), 
-                        event: payload.event, 
-                        timestamp: payload.timestamp 
+                        name: payload.name, 
+                        timestamp: payload.timestamp,
+                        completed: false,
                     } 
                 ]
             });
@@ -60,7 +61,6 @@ const listReducerFunction = (state, { type, payload }) => {
             });
 
         // todo list
-
         case "ADD_TODO":
             return({
                 ...state,

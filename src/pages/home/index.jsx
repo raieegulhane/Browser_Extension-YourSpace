@@ -6,6 +6,7 @@ import {
     Weather, 
     GoogleSearch, 
     Links, 
+    Events,
     Todo, 
     Settings 
 } from "../../components";
@@ -32,8 +33,9 @@ export const Home = () => {
                         </div>
                     }
                 </div>
-                <div className="fx-r fx-al-c gap-3">
+                <div className={`fx-r fx-al-c gap-3 ${focusMode ? "focus-on" : "focus-off"}`}>
                     {/* <Weather /> */}
+                    <Events />
                 </div>
             </header>
             <DateTime />

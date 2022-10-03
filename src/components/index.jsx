@@ -9,5 +9,6 @@ export { Quotes } from "./quotes";
 export { Weather } from "./weather";
 export { GoogleSearch } from "./google-search";
 export { Links } from "./links";
+export { Events } from "./events";
 export { Todo } from "./todo";
 export { Settings } from "./setting";
