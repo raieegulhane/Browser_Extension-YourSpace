@@ -59,7 +59,7 @@ export const Weather = () => {
         });
 
         getWeatherDetails();
-    }, [lat, lon]);
+    }, [lat, lon, getWeatherDetails]);
 
     return(
         <div className="weather-wr">

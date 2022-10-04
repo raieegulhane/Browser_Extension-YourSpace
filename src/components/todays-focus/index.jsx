@@ -31,9 +31,9 @@ export const TodaysFocus = () => {
 
     useLayoutEffect(() => {
         const savedFocus = localStorage.getItem("focus");
-        const savedIsCompleted = JSON.parse(localStorage.getItem("isCompleted"));
-        focusDispatch({ type: "SET_FOCUS", payload: savedFocus });
-        focusDispatch({ type: "UPDATE_COMPLETED_STATE", payload: savedIsCompleted })
+        const savedIsCompleted = localStorage.getItem("isCompleted");
+        focusDispatch({ type: "SET_FOCUS", payload: !savedFocus ? "" : JSON.parse(savedFocus) });
+        focusDispatch({ type: "UPDATE_COMPLETED_STATE", payload: !savedIsCompleted ? false : JSON.parse(savedIsCompleted)})
     }, [focusDispatch]);
 
     return(

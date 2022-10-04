@@ -34,7 +34,7 @@ export const Home = () => {
                 </div>
                 <div className={`fx-r fx-al-c gap-3 ${focusMode ? "focus-on" : "focus-off"}`}>
                     <Events />
-                    <Weather />
+                    {/* <Weather /> */}
                 </div>
             </header>
             <DateTime />
