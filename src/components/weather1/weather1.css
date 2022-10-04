@@ -1,0 +1,7 @@
+.weather-wr {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+}

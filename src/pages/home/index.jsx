@@ -11,7 +11,6 @@ import {
     Settings 
 } from "../../components";
 import YourSpaceLogo from "../../assets/yourspace-logo2.svg"
-import { useLayoutEffect, useState } from "react";
 import { useSetting } from "../../context";
 
 export const Home = () => {
@@ -34,8 +33,8 @@ export const Home = () => {
                     }
                 </div>
                 <div className={`fx-r fx-al-c gap-3 ${focusMode ? "focus-on" : "focus-off"}`}>
-                    {/* <Weather /> */}
                     <Events />
+                    <Weather />
                 </div>
             </header>
             <DateTime />
