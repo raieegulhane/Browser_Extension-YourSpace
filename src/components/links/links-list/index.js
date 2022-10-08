@@ -22,6 +22,7 @@ export const LinksList = ({ setShowAddLink }) => {
                                         className="ll-link link-noDecoration"
                                         href={link}
                                         target="_blank"
+                                        rel="noreferrer"
                                     >
                                         {linkName}
                                     </a>

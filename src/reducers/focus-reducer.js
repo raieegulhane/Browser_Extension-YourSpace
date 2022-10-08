@@ -7,7 +7,7 @@ const initialFocusState = {
 const focusReducerFunction = (state, { type, payload }) => {
     switch (type) {
         case "SET_FOCUS":
-            localStorage.setItem("focus", payload);
+            localStorage.setItem("focus", JSON.stringify(payload));
             return({
                 ...state,
                 focus: payload

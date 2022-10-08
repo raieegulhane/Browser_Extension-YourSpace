@@ -5,7 +5,6 @@ import axios from "axios";
 export const Quotes = () => {
     const [quoteData, setQuoteData] = useState({ quote: "", author: "" });
     const { quote, author } = quoteData;
-    const [showAuthor, setShowAuthor] = useState(false);
 
     const fetchQuoteFunction = async () => {
         const random = Math.floor(Math.random() * 1643 - 1);

@@ -44,7 +44,6 @@ export const Weather = () => {
                 maxTemp: Math.floor(Number(data.main.temp_max) - 273.15),
                 description: data.weather[0].description
             });
-            console.log(description);
         } catch (error) {
             console.log("ERROR__GET_WEATHER: ", error);
         }

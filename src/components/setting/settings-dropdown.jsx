@@ -1,4 +1,4 @@
-import { useLayoutEffect, useState } from "react";
+import { useLayoutEffect } from "react";
 import { useSetting } from "../../context";
 
 export const SettingsDropdown = () => {
