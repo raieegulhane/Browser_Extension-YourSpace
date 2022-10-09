@@ -25,6 +25,9 @@ export const Home = () => {
                         src={YourSpaceLogo} 
                         alt="yourspace-logo" 
                     />
+                    <p className={`txt-bold focus-mode-on ${focusMode ? "focus-off" : "focus-on"}`}>
+                        FOCUS MODE: ON
+                    </p>
                     {
                         <div className={`fx-r gap-1 ${focusMode ? "focus-on" : "focus-off"}`}>
                             <GoogleSearch />
