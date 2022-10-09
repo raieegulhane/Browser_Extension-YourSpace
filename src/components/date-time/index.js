@@ -19,7 +19,6 @@ export const DateTime = () => {
 
     return(
         <div className="td-wr fx-c fx-al-c">
-            <p className={`txt-bold focus-mode-on fx-c gap-1 ${focusMode ? "focus-off" : "focus-on"}`}>FOCUS MODE: ON</p>
             <div className="date">{date}</div>
             <div><span className="time">{time}</span><span>{clockFormat12 && ampm}</span></div>
             <p className={`greetings ${focusMode ? "focus-on" : "focus-off"}`}>Good {userGreeting}, {username}.</p>
