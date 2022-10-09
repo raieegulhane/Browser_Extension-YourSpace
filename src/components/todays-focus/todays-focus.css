@@ -17,12 +17,21 @@
 }
 
 .tf-cheer {
-    font-size: 1.5rem;
-    font-weight: bold;
+    font-size: 1rem;
     margin-top: 1rem;
+    transition: opacity 0.5s ease;
+}
+
+.show-cheer {
+    opacity: 1;
+}
+
+.hide-cheer {
+    opacity: 0;
 }
 
 .tf-task-cn {
+    position: relative;
     margin-top: 0.5rem;
     gap: 0.75rem;
 }
@@ -30,13 +39,67 @@
 .tf-task {
     font-size: 2rem;
     line-height: 2rem;
-    margin-right: 3rem;
+    text-decoration: line-through;
+    text-decoration-thickness: 2px;
+    transition: text-decoration-color 0.7s ease;
 }
 
-.tf-task-completed {
-    text-decoration: line-through;
+.tf-task.not-completed {
+    text-decoration-color: transparent;
+}
+
+.tf-task.completed {
+    text-decoration-color: var(--white);
 }
 
 .tf-btn-cn {
-    gap: 1rem;
+    position: absolute;
+    top: 0.75rem;
+    right: -4rem;
+    opacity: 0;
+    transition: opacity 1s ease;
 }
+
+.tf-task-cn:hover > .tf-btn-cn {
+    opacity: 1;
+}
+
+.tf-btn-i {
+    font-size: 1rem;
+}
+
+.tf-inp-cb {
+    display: none;
+}
+
+.checkmark {
+    height: 22px;
+    width: 22px;
+    border: 3px solid var(--white);
+    border-radius: var(--br-sq);
+    margin-top: 0.45rem;
+    cursor: pointer;
+}
+
+.checkmark:after {
+    opacity: 0;
+    position: absolute;
+    content: "";
+    transition: opacity 0.7s ease;
+}
+
+.tf-inp-cb:checked ~ .checkmark:after {
+    opacity: 1; 
+}
+
+.tf-label-cb .checkmark:after {
+    left: 7px;
+    top: 11px;
+    width: 4px;
+    height: 9px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+} 

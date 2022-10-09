@@ -10,11 +10,12 @@
     scroll-behavior: smooth;
     word-wrap: break-word;
     box-sizing: border-box;
+    font-family: var(--font);
+
 }
 
 .body {
     color: var(--white);
-    font: var(--font);
 }
 
 .App {

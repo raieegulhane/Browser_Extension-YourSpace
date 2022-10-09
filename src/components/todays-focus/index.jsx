@@ -6,14 +6,7 @@ export const TodaysFocus = () => {
     const [focusState, focusDispatch] = useReducer(focusReducerFunction, initialFocusState);
     const { focus, isEditing, isCompleted } = focusState;
     const [inputValue, setInputValue] = useState("");
-    const cheerList = [
-		"You did it!! 🎉",
-        "Good job!!! ✨",
-        "Wohoo!! Task completed! 🥳",
-        "Keep it up!! 🙌",
-        "You rock!!! 🤘"
-	];
-    const cheer = cheerList[Math.floor(Math.random() * 4)];
+    const[showCheer, setShowCheer] = useState(false);
 
     const submitFocusHandler = (event) => {
         if (event.key === "Enter" && inputValue) {
@@ -24,10 +17,21 @@ export const TodaysFocus = () => {
     }
 
     const editFocusHandler = () => {
-        const prevFocus = localStorage.getItem("focus");
+        const prevFocus = JSON.parse(localStorage.getItem("focus"));
         setInputValue(prevFocus);
         focusDispatch({ type: "INIT_EDIT_FOCUS", payload: true })
     }
+
+    useLayoutEffect(() => {
+        if (isCompleted) {
+            setShowCheer(true);
+            setTimeout(() => {
+                setShowCheer(false);
+            }, 1000); 
+        } else {
+            setShowCheer(false);
+        }
+    }, [isCompleted]);
 
     useLayoutEffect(() => {
         const savedFocus = localStorage.getItem("focus");
@@ -53,38 +57,36 @@ export const TodaysFocus = () => {
             <div className="fx-c fx-al-c">
                 <h3 className="tf-heading">TODAY'S FOCUS</h3>
                 <div className="tf-task-cn fx-r fx-js-sb fx-al-c">
-                    {
-                        isCompleted ? 
-                        <button 
-                            className="focus-checked btn-icon"
-                            onClick={() => focusDispatch({ type: "UPDATE_COMPLETED_STATE", payload: false })}
-                        >
-                            <span className="material-icons-outlined">check_box</span>
-                        </button> :
-                        <button 
-                            className="focus-unchecked btn-icon"
-                            onClick={() => focusDispatch({ type: "UPDATE_COMPLETED_STATE", payload: true })}
-                        >
-                            <span className="material-icons-outlined">check_box_outline_blank</span>
-                        </button>
-                    }
-                    <p className={`tf-task ${isCompleted && "tf-task-completed"}`}>{focus}</p>
-                    <div className="tf-btn-cn fx-r fx-al-c">
+                    <label className="fx-r gap-1 tf-label-cb">
+                        <input 
+                            className="tf-inp-cb"
+                            type="checkbox" 
+                            name="todays-focus"
+                            checked={isCompleted}
+                            value={isCompleted}
+                            onChange={() => focusDispatch({ type: "UPDATE_COMPLETED_STATE", payload: !isCompleted })}
+                        />
+                        <span className="checkmark"></span>
+                        <span className={`tf-task ${isCompleted ? "completed" : "not-completed"}`}>{focus}</span>
+                    </label>
+                    <div className="tf-btn-cn fx-r fx-al-c gap-2">
                         <button 
                             className="btn-icon"
                             onClick={editFocusHandler}
                         >
-                            <span className="material-icons">edit</span>
+                            <span className="tf-btn-i material-icons">edit</span>
                         </button>
                         <button 
                             className="btn-icon"
                             onClick={() => focusDispatch({ type: "DELETE_FOCUS"})}
                         >
-                            <span className="material-icons">delete</span>
+                            <span className="tf-btn-i material-icons">delete</span>
                         </button>
                     </div>
                 </div>
-                { isCompleted && <p className="tf-cheer">{cheer}</p>}
+                <p className={`tf-cheer ${showCheer ? "show-cheer" : "hide-cheer"}`}>
+                    Task completed!🤘
+                </p>
             </div>
         }
         </div>
