@@ -17,6 +17,12 @@
     margin-right: 2.5rem;
 }
 
+.home-main {
+    position: fixed;
+    top: 25%;
+    width: 100%;
+}
+
 .home-footer {
     position: fixed;
     bottom: 1rem;

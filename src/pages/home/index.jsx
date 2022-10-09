@@ -17,7 +17,7 @@ export const Home = () => {
     const { settingState: { focusMode } } = useSetting();
 
     return(
-        <div className="home-wr fx-c fx-js-c fx-al-c">
+        <div className="home-wr">
             <header className="fx-r fx-js-sb fx-al-c home-header">
                 <div className="fx-r fx-al-c">
                     <img 
@@ -37,8 +37,10 @@ export const Home = () => {
                     {/* <Weather /> */}
                 </div>
             </header>
-            <DateTime />
-            <TodaysFocus />
+            <main className="home-main fx-c fx-js-c fx-al-c">
+                <DateTime />
+                <TodaysFocus />
+            </main>
             <footer className="home-footer fx-r fx-js-sb fx-al-c">
                 <Settings />
                 <div className={`fx-r gap-1 ${focusMode ? "focus-on" : "focus-off"}`}>
