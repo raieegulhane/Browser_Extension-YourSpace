@@ -1,26 +1,69 @@
 .comp-bg {
     background-color: var(--comp-bg);
-    backdrop-filter: blur(3px);
-    -webkit-backdrop-filter: blur(3px);
+    backdrop-filter: blur(23px);
+    -webkit-backdrop-filter: blur(23px);
+    padding: 1rem;
     border-radius: var(--br-sq);
+    transition: opacity 0.75s ease;
 }
 
-.inp {
+.comp-bg.on {
+    display: 1;
+}
+
+.comp-bg.off {
+    opacity: 0;
+}
+
+.inp,
+.dd-inp {
     background-color: transparent;
-    color: white;
-    text-align: center;
-    width: 100%;
-    padding: 0.25rem 2rem;
+    color: var(--white);
     border-top: none;
     border-left: none;
     border-right: none;
-    border-bottom: 3px solid var(--white);
-    margin-top: 0.25rem;
     outline: none;
     caret-color: var(--white);
 }
 
-.inp:focus {
+.inp {
+    text-align: center;
+    width: 100%;
+    padding: 0.25rem 2rem;
+    border-bottom: 3px solid var(--white);
+    margin-top: 0.25rem;
+}
+
+.dd-inp {
+    font-size: 1rem;
+    padding: 0.5rem 0.25rem 0.25rem;
+    border-bottom: 1px solid var(--white);
+}
+
+.dd-inp::placeholder {
+    color: var(--grey1);
+}
+
+.inp:focus,
+.dd-inp:focus {
     outline: none;
     border-color: white;
+}
+
+.dd-inp-empty {
+    border: 1px solid var(--white);
+}
+
+.txt-red {
+    color: var(--red);
+}
+
+.focus-on { 
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+.focus-off { 
+    opacity: 1;
+    transition: opacity 1s ease;
 }

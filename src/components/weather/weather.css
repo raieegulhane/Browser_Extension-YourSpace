@@ -1,7 +1,40 @@
 .weather-wr {
-    position: absolute;
-    top: 1rem;
-    right: 1.5rem;
+    position: relative;
+    cursor: pointer;
+}
+
+.temp {
     font-size: 1.5rem;
+    line-height: 1.5rem;
     font-weight: bold;
+}
+
+.weather-dd {
+    position: absolute;
+    top: 3.5rem;
+    right: 0rem; 
+    min-width: 300px;
+    padding: 0rem 0.5rem 1rem 1.5rem;
+}
+
+.city {
+    font-size: 1.25rem;
+}
+
+.dd-temp {
+    font-size: 4rem;
+}
+
+.dd-temp-sup {
+    padding-top: 1.1rem;
+}
+
+.dd-range {
+    padding: 0 1.5rem;
+    margin-left: auto;
+}
+
+.dd-c {
+    padding-top: 0.2rem;
+    font-size: 0.6rem;
 }

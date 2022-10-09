@@ -1,63 +1,106 @@
-import "./weather.css";
-import { useState, useEffect } from "react";
 import axios from "axios";
+import { useEffect, useState } from "react";
+import "./weather.css";
 
 export const Weather = () => {
-    const [lat, setLat] = useState("0");
-    const [long, setLong] = useState("0");
-    const [error, setError] = useState("");
-    const cityName = "kolkata";
-    const [data, setData] = useState({
+    const [showDropdown, setShowDropdown] = useState(false);
+    const APIkey = process.env.REACT_APP_API_KEY;
+    const [coordinates, setCoordinates] = useState({ lat: "", lon: "" });
+    const { lat, lon } = coordinates;
+    const [weatherDetails, setWeatherDetails] = useState({
+        icon: "",
         city: "",
-        degrees: 0,
+        temp: "",
+        minTemp: "",
+        maxTemp: "",
+        humidity: "",
+        description: "",
     });
-    const { city, degrees } = data;
+    const {
+        icon,
+        city,
+        temp,
+        minTemp,
+        maxTemp,
+        description
+    } = weatherDetails;
 
-  const getWeatherApi = (lat, long) => {
-    if (lat === "0" || long === "0") {
-      return(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${process.env.REACT_APP_API_KEY}`);
-    } else {
-      return(`https://api.openweathermap.org/data/2.5/weather/?lat=${lat}&lon=${long}&units=metric&APPID=${process.env.REACT_APP_API_KEY}`);
+    const getAPIurl = () => {
+        if (lat && lon) {
+            return(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${APIkey}`);
+        } else {
+            return(`https://api.openweathermap.org/data/2.5/weather?q=Kolkata&appid=${APIkey}`)
+        }
     }
-  };
+
+    const getWeatherDetails = async () => {
+        try {
+            const { data } = await axios.get(getAPIurl());
+            setWeatherDetails({
+                icon: data.weather[0].icon,
+                city: data.name,
+                temp: Math.floor(Number(data.main.temp) - 273.15),
+                minTemp: Math.floor(Number(data.main.temp_min) - 273.15),
+                maxTemp: Math.floor(Number(data.main.temp_max) - 273.15),
+                description: data.weather[0].description
+            });
+        } catch (error) {
+            console.log("ERROR__GET_WEATHER: ", error);
+        }
+    }
 
     useEffect(() => {
-        (() => {
-            navigator.geolocation.getCurrentPosition(function (position) {
-            setLat(position.coords.latitude);
-            setLong(position.coords.longitude);
+        navigator.geolocation.getCurrentPosition((position) => {
+            setCoordinates({
+                lat: position.coords.latitude,
+                lon: position.coords.longitude
+            });
         });
-        })();
 
-        (async () => {
-            const req = getWeatherApi(lat, long);
-            try {
-                const res = await axios(req);
-                setData({
-                    city: res.data.name,
-                    degrees: Math.round(res.data.main.temp),
-                    weatherIcon: res.data.weather[0].icon
-                });
-                setError("");
-            } catch (error) {
-                setError("City not found");
-            }
-        })();
-    }, [lat, long, getWeatherApi]);
+        getWeatherDetails();
+    }, [lat, lon, getWeatherDetails]);
 
     return(
         <div className="weather-wr">
-        {
-            error === "" ?
-            <div className="weather-cn">
-                <div className="weather-display">
-                    {city} {degrees}°
+            <div 
+                className="fx-r fx-al-c"
+                onMouseOver={() => setShowDropdown(true)}
+                onMouseOut={() => setShowDropdown(false)}
+            >
+                <img 
+                    src={`http://openweathermap.org/img/wn/${icon}.png`}
+                    alt="weather-icon"
+                />
+                <div className="fx-c fx-al-c">
+                    <p><span className="temp">{temp}</span><sup>&#0176;C</sup></p>
+                    <p className="txt-sm">{city}</p>
                 </div>
-            </div> :
-            <p className="fx-r fx-al-c">
-                <span className="material-icons-outlined">error</span> {error}
-            </p>
-        }
+            </div>
+            {
+                showDropdown &&
+                <div className={`weather-dd comp-bg ${showDropdown ? "on" : "off"}`}>
+                    <div className="fx-r fx-al-c fx-js-sb">
+                        <div>
+                            <p className="txt-bold city">{city}</p>
+                            <p className="txt-gray">{description}</p>
+                        </div>
+                        <img 
+                            src={`http://openweathermap.org/img/wn/${icon}@2x.png`}
+                            alt="weather-icon"
+                        />
+                    </div>
+                    <div className="fx-r fx-al-c">
+                        <p className="fx-r">
+                            <span className="dd-temp">{temp}</span>
+                            <span className="dd-temp-sup">&#0176;C</span>
+                        </p>
+                        <div className="fx-c dd-range">
+                            <p className="fx-r txt-gray">min {minTemp}&#0176;<span className="dd-c">C</span></p>
+                            <p className="fx-r txt-gray">max {maxTemp}&#0176;<span className="dd-c">C</span></p>
+                        </div>
+                    </div>
+                </div>
+            }
         </div>
     );
 }

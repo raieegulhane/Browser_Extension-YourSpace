@@ -5,7 +5,6 @@ import axios from "axios";
 export const Quotes = () => {
     const [quoteData, setQuoteData] = useState({ quote: "", author: "" });
     const { quote, author } = quoteData;
-    const [showAuthor, setShowAuthor] = useState(false);
 
     const fetchQuoteFunction = async () => {
         const random = Math.floor(Math.random() * 1643 - 1);
@@ -24,17 +23,8 @@ export const Quotes = () => {
 
     return(
         <div className="quote-wr fx-c fx-al-c">
-            <p 
-                onMouseOver={() => setShowAuthor(true)}
-                onMouseOut={() => setShowAuthor(false)}
-            >
-                "{quote}"
-            </p>
-            { 
-                showAuthor &&
-                author !== null &&
-                <i className="txt-sm">~ {author}</i>
-            }
+            <p className="quote">"{quote}"</p>
+            <p className="author"><i>~ {author === null ? "unknown" : author}</i></p>
         </div>
     );
 }

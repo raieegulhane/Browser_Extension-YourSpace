@@ -1,0 +1,45 @@
+.ll-wr {
+    padding: 0.5rem 0;
+}
+
+.ll-list {
+    max-height: 175px;
+    overflow-y: auto;
+    gap: 0.5rem;
+    padding: 0.5rem;
+}
+
+.ll-list::-webkit-scrollbar {
+    width: 3px;
+}
+.ll-list::-webkit-scrollbar-thumb {
+    background-color: var(--rem-bg);
+    border-radius: 3px;
+}
+
+.ll-list::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 3px;
+}
+
+.ll-link-cn {
+    gap: 0.5rem;
+}
+
+.ll-link {
+    color: var(--white);
+}
+
+.ll-link:hover {
+    transform: scaleX(1.05);
+    transition: transform 0.5s ease;
+}
+
+.ll-btn-del {
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+.ll-item:hover > .ll-btn-del {
+    opacity: 1;
+}

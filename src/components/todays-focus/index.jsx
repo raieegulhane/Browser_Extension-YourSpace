@@ -1,40 +1,44 @@
 import "./todays-focus.css";
-import { useState, useReducer, useEffect } from "react";
-import { initialFocusState, focusReducerFunction } from "../../reducers/focus-reducer";
+import { useState, useLayoutEffect, useReducer } from "react";
+import { initialFocusState, focusReducerFunction } from "../../reducers";
 
 export const TodaysFocus = () => {
-    const [state, dispatch] = useReducer(focusReducerFunction, initialFocusState);
-    const { focus, isEditing, isCompleted} = state;
+    const [focusState, focusDispatch] = useReducer(focusReducerFunction, initialFocusState);
+    const { focus, isEditing, isCompleted } = focusState;
     const [inputValue, setInputValue] = useState("");
-    const cheerList = [
-		"You did it!! 🎉",
-        "Good job!!! ✨",
-        "Wohoo!! Task completed! 🥳",
-        "Keep it up!! 🙌",
-        "You rock!!! 🤘"
-	];
-    const cheer = cheerList[Math.floor(Math.random() * 4)];
+    const[showCheer, setShowCheer] = useState(false);
 
     const submitFocusHandler = (event) => {
         if (event.key === "Enter" && inputValue) {
-            dispatch({ type: "SET_FOCUS", payload: inputValue });
+            focusDispatch({ type: "SET_FOCUS", payload: inputValue });
             setInputValue("");
-            dispatch({ type: "INIT_EDIT_FOCUS", payload: false })
+            focusDispatch({ type: "INIT_EDIT_FOCUS", payload: false })
         }
     }
 
     const editFocusHandler = () => {
-        const prevFocus = localStorage.getItem("focus");
+        const prevFocus = JSON.parse(localStorage.getItem("focus"));
         setInputValue(prevFocus);
-        dispatch({ type: "INIT_EDIT_FOCUS", payload: true })
+        focusDispatch({ type: "INIT_EDIT_FOCUS", payload: true })
     }
 
-    useEffect(() => {
-        const currentFocus = localStorage.getItem("focus");
-        const isComppletedState = localStorage.getItem("isCompleted");
-        dispatch({ type: "SET_FOCUS", payload: currentFocus ? currentFocus : ""});
-        dispatch({ type: "UPDATED_COMPLETED_STATUS", payload: isComppletedState ? isComppletedState : false })
-    }, [])
+    useLayoutEffect(() => {
+        if (isCompleted) {
+            setShowCheer(true);
+            setTimeout(() => {
+                setShowCheer(false);
+            }, 1000); 
+        } else {
+            setShowCheer(false);
+        }
+    }, [isCompleted]);
+
+    useLayoutEffect(() => {
+        const savedFocus = localStorage.getItem("focus");
+        const savedIsCompleted = localStorage.getItem("isCompleted");
+        focusDispatch({ type: "SET_FOCUS", payload: !savedFocus ? "" : JSON.parse(savedFocus) });
+        focusDispatch({ type: "UPDATE_COMPLETED_STATE", payload: !savedIsCompleted ? false : JSON.parse(savedIsCompleted)})
+    }, [focusDispatch]);
 
     return(
         <div className="tf-wr">
@@ -53,39 +57,36 @@ export const TodaysFocus = () => {
             <div className="fx-c fx-al-c">
                 <h3 className="tf-heading">TODAY'S FOCUS</h3>
                 <div className="tf-task-cn fx-r fx-js-sb fx-al-c">
-                    {
-                        isCompleted ? 
-                        <button 
-                            className="focus-checked btn-icon"
-                            onClick={() => dispatch({ type: "UPDATE_COMPLETED_STATE", payload: false })}
-                        >
-                            <span className="material-icons-outlined">check_box</span>
-                        </button> :
-                        <button 
-                            className="focus-unchecked btn-icon"
-                            onClick={() => dispatch({ type: "UPDATE_COMPLETED_STATE", payload: true })}
-                        >
-                            <span className="material-icons-outlined">check_box_outline_blank</span>
-                        </button>
-                    }
-                    <p className={`tf-task ${isCompleted && "tf-task-completed"}`}>{focus}</p>
-                    <div className="tf-btn-cn fx-r fx-al-c">
+                    <label className="fx-r gap-1 tf-label-cb">
+                        <input 
+                            className="tf-inp-cb"
+                            type="checkbox" 
+                            name="todays-focus"
+                            checked={isCompleted}
+                            value={isCompleted}
+                            onChange={() => focusDispatch({ type: "UPDATE_COMPLETED_STATE", payload: !isCompleted })}
+                        />
+                        <span className="checkmark"></span>
+                        <span className={`tf-task ${isCompleted ? "completed" : "not-completed"}`}>{focus}</span>
+                    </label>
+                    <div className="tf-btn-cn fx-r fx-al-c gap-2">
                         <button 
                             className="btn-icon"
                             onClick={editFocusHandler}
                         >
-                            <span className="material-icons">edit</span>
+                            <span className="tf-btn-i material-icons">edit</span>
                         </button>
                         <button 
                             className="btn-icon"
-                            onClick={() => dispatch({ type: "DELETE_FOCUS"})}
-
+                            onClick={() => focusDispatch({ type: "DELETE_FOCUS"})}
                         >
-                            <span className="material-icons">delete</span>
+                            <span className="tf-btn-i material-icons">delete</span>
                         </button>
                     </div>
                 </div>
-                { isCompleted && <p className="tf-cheer">{cheer}</p>}
+                <p className={`tf-cheer ${showCheer ? "show-cheer" : "hide-cheer"}`}>
+                    Task completed!🤘
+                </p>
             </div>
         }
         </div>
